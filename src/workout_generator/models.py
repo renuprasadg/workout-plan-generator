@@ -9,4 +9,3 @@ class WorkoutPreferences:
     days_per_week: int
     duration_minutes: int | None = None
     injuries: str = ""
-    

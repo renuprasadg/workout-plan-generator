@@ -1,6 +1,4 @@
-
 from workout_generator.models import WorkoutPreferences
-
 
 VALID_GOALS = {
     "build_muscle",
@@ -56,13 +54,11 @@ def validate_preferences(preferences: WorkoutPreferences) -> list[str]:
         errors.append("Days per week must be between 1 and 7")
 
     # Validate optional workout duration
-    if preferences.duration_minutes is not None:
-        if (
-            type(preferences.duration_minutes) is not int
-            or not 15 <= preferences.duration_minutes <= 120
-        ):
-            errors.append("Workout duration must be between 15 and 120 minutes")
-
+    if preferences.duration_minutes is not None and (
+        type(preferences.duration_minutes) is not int
+        or not 15 <= preferences.duration_minutes <= 120
+    ):
+        errors.append("Workout duration must be between 15 and 120 minutes")
     # Validate optional injuries
     if not isinstance(preferences.injuries, str):
         errors.append("Injuries or limitations must be text")

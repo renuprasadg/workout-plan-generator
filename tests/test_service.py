@@ -1,4 +1,3 @@
-
 from unittest.mock import patch
 
 import pytest
@@ -21,9 +20,7 @@ def valid_preferences() -> WorkoutPreferences:
 def test_create_workout_plan_success():
     preferences = valid_preferences()
 
-    with patch(
-        "workout_generator.service.generate_workout_plan"
-    ) as mock_generate:
+    with patch("workout_generator.service.generate_workout_plan") as mock_generate:
         mock_generate.return_value = "Day 1: Walking"
 
         result = create_workout_plan(preferences)
@@ -36,9 +33,7 @@ def test_invalid_preferences():
     preferences = valid_preferences()
     preferences.days_per_week = 10
 
-    with patch(
-        "workout_generator.service.generate_workout_plan"
-    ) as mock_generate:
+    with patch("workout_generator.service.generate_workout_plan") as mock_generate:
         with pytest.raises(ValueError, match="Days per week"):
             create_workout_plan(preferences)
 
@@ -62,12 +57,8 @@ def test_multiple_validation_errors():
 def test_groq_error_propagation():
     preferences = valid_preferences()
 
-    with patch(
-        "workout_generator.service.generate_workout_plan"
-    ) as mock_generate:
-        mock_generate.side_effect = RuntimeError(
-            "Unable to generate a workout plan"
-        )
+    with patch("workout_generator.service.generate_workout_plan") as mock_generate:
+        mock_generate.side_effect = RuntimeError("Unable to generate a workout plan")
 
         with pytest.raises(RuntimeError, match="Unable to generate"):
             create_workout_plan(preferences)
@@ -76,9 +67,7 @@ def test_groq_error_propagation():
 def test_prompts_passed_to_groq():
     preferences = valid_preferences()
 
-    with patch(
-        "workout_generator.service.generate_workout_plan"
-    ) as mock_generate:
+    with patch("workout_generator.service.generate_workout_plan") as mock_generate:
         mock_generate.return_value = "Workout plan"
 
         create_workout_plan(preferences)
