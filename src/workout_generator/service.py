@@ -1,4 +1,3 @@
-
 from workout_generator.llm_client import generate_workout_plan
 from workout_generator.models import WorkoutPreferences
 from workout_generator.prompts import build_system_prompt, build_user_prompt

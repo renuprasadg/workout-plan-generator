@@ -1,9 +1,7 @@
-
 from pathlib import Path
 from unittest.mock import patch
 
 from streamlit.testing.v1 import AppTest
-
 
 APP_PATH = Path(__file__).resolve().parents[1] / "app.py"
 
@@ -50,9 +48,7 @@ def test_generate_workout_plan():
         assert preferences.days_per_week == 4
         assert preferences.equipment == "no_equipment"
 
-        assert at.session_state["workout_plan"] == (
-            "## Day 1 - Full Body Workout"
-        )
+        assert at.session_state["workout_plan"] == ("## Day 1 - Full Body Workout")
 
 
 def test_api_failure_displays_error():

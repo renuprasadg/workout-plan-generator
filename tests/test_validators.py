@@ -1,4 +1,3 @@
-
 import pytest
 
 from workout_generator.models import WorkoutPreferences

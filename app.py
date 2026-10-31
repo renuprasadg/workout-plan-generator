@@ -1,9 +1,7 @@
-
 import streamlit as st
 
 from workout_generator.models import WorkoutPreferences
 from workout_generator.service import create_workout_plan
-
 
 st.set_page_config(
     page_title="AI Workout Plan Generator",
@@ -25,7 +23,6 @@ if "workout_plan" not in st.session_state:
 
 # Collect user preferences
 with st.form("workout_form"):
-
     fitness_goal = st.selectbox(
         "Fitness Goal",
         options=[
@@ -93,7 +90,6 @@ with st.form("workout_form"):
 
 # Handle form submission
 if submitted:
-
     preferences = WorkoutPreferences(
         fitness_goal=fitness_goal,
         difficulty_level=difficulty_level,
@@ -116,15 +112,11 @@ if submitted:
         st.error(str(exc))
 
     except RuntimeError:
-        st.error(
-            "Unable to generate your workout plan. "
-            "Please try again later."
-        )
+        st.error("Unable to generate your workout plan. Please try again later.")
 
 
 # Display generated plan
 if st.session_state["workout_plan"]:
-
     st.divider()
 
     st.subheader("Your Personalised Workout Plan")

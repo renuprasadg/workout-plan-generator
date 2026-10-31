@@ -16,8 +16,3 @@ def test_workout_preferences():
     assert preferences.duration_minutes == 30
     assert preferences.injuries == "none"
     assert preferences.equipment == "dumbbells"
-
-
-
-    
-    

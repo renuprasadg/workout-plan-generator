@@ -1,9 +1,7 @@
-
 import os
 
 from dotenv import load_dotenv
 from groq import APIError, Groq
-
 
 load_dotenv()
 
